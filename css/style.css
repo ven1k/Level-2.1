@@ -1,0 +1,180 @@
+:root {
+    --black: #000000;
+}
+
+body {
+    box-sizing: border-box;
+    width: 100%;
+    color: red;
+}
+
+
+.box1 {
+    margin-top: 20px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--black);
+}
+
+.box2 {
+    margin: 20px 10px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--black);
+}
+
+.flex {
+    display: flex;
+    padding-top: 20px;
+}
+
+.test {
+    padding: 30px 30px;
+    margin-left: auto;
+}
+
+.box {
+    margin: 20px 10px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: yellow;
+}
+
+.boxR {
+    visibility: hidden;
+    background: red;
+}
+
+.boxG {
+    margin: 20px 10px;
+    display: block;
+    width: 50px;
+    height: 20px;
+    visibility: hidden;
+    background: green;
+}
+
+.buttonTop {
+    display: block;
+}
+
+input, textarea {
+    display: block;
+    margin-right: 10px;
+}
+
+button{
+    height: 30px;
+    margin: 10px 0;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+
+.mouseCord {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.location {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 180px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.userLanguage {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 180px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.myInput {
+    width: 100px;
+    height: 100px;
+    margin: 10px 20px;
+    border: 2px solid red;
+}
+
+#bigBox {
+    width: 100px;
+    height: 100px;
+    border: 3px solid black;
+}
+
+#smallBox {
+    width: 50px;
+    height: 50px;
+    border: 3px solid red;
+}
+
+.stopScroll {
+
+}
+
+
+.hidden {
+    visibility: hidden;
+}
+
+.addGrayBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 4;
+    opacity: 50%;
+    background: gray;
+}
+
+.stopScroll {
+    overflow: hidden;
+}
+
+
+.changeInput {
+    box-shadow: 0 0 3px green;
+    color: green;
+}
+
+#divInput {
+    position: relative;
+    margin-top: 5px;
+    padding-top: 5px;
+    width: 150px;
+    text-align: center;
+    border: 1px solid red;
+}
+
+#inputFile {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#file-upload-button {
+    color: green;
+}

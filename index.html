@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Test"/>
+    <meta property="og:type" content="article"/>
+    <title>5 assign</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="test">
+
+    <button onclick="boxDisplayNone()">Delete box Display: none</button>
+    <button onclick="deleteBox()">Delete box JS</button>
+    <button onclick="hiddenBox()">Hidden box JS+CSS</button>
+
+    <div class="box1" id="blackBox" ></div>
+
+    <button onclick="deleteOrCreateBox()">Delete or create box</button>
+    <div class="flex" >
+        <div class="box2" ></div>
+        <div class="box2" ></div>
+        <div class="box2" ></div>
+        <div class="box2" ></div>
+        <div class="box2" ></div>
+    </div>
+
+    <button onclick="checkValue()">hidden Selectors</button>
+    <input type="text" id="input" value="div">
+
+    <div class="box2" ></div>
+    <div class="box2" ></div>
+    <div class="box2" ></div>
+
+    <div class="flex">
+        <div id="boxYellow" class="box" onclick="sayHello()"></div>
+    </div>
+
+    <div id="boxRed" class="box boxR" onclick="sayHello()"></div>
+    <button onmouseover="visibilityBoxOver()" onmouseout="visibilityBoxOut()">visibility Box</button>
+
+    <div id="boxGreen" class="boxG"></div>
+    <input type="text" id="inputGreen">
+
+
+    <div class="flex">
+        <input type="text" id="linkImg">
+        <button id="loadImg">Load img</button>
+        <div id="demo"></div>
+    </div>
+
+    <div class="flex">
+        <textarea id="areaImages"> </textarea>
+        <button id="loadAreaImg">Load img</button>
+        <div id="areaDemo"></div>
+    </div>
+
+
+    <div class="mouseCord">
+        X: <span class="x"></span>
+        Y: <span class="y"></span>
+    </div>
+
+    <div class="userLanguage">
+        user language: <span class="language"></span></br>
+    </div>
+
+    <div class="location">
+        latitude: <span class="latitude"></span></br>
+        longitude: <span class="longitude"></span>
+    </div>
+
+    <div class="flex">
+        <div id="first" contenteditable="true" class="myInput">I'm Editable. Edit me! first</div>
+        <div id="second" contenteditable="true" class="myInput">I'm Editable. Edit me! second</div>
+        <div id="third" contenteditable="true" class="myInput">I'm Editable. Edit me! third</div>
+    </div>
+
+    <div class="stopScrollBox"></div>
+
+    <div id="bigBox">
+        <div id="smallBox"></div>
+    </div>
+
+    <button class="stopScroll">Stop Scroll</button>
+
+    <form id="formReload"><input type="submit" value="GO"></form>
+
+    <div id="divInput"> Перетащи файл
+        <input id="inputFile" type="file">
+    </div>
+
+    <button class="buttonTop">Go UP</button>
+</section>
+
+<script>
+    /*Assignment 1 */
+    function deleteBox() {
+        document.getElementById("blackBox").remove();
+    }
+
+    function boxDisplayNone() {
+        document.getElementById("blackBox").style.display = "none";
+    }
+
+    function hiddenBox() {
+        document.getElementById("blackBox").classList.add('hidden');
+    }
+
+    /*Assignment 2 */
+    function deleteOrCreateBox() {
+        if(document.getElementsByClassName('box2')[0].style.display == 'none') {
+            changeStyleToBlocks('block');
+        }else {
+            changeStyleToBlocks('none');
+        }
+    }
+
+    /*Assignment 3 */
+    function changeStyleToBlocks(property) {
+        for (let i = 0; i < 5; i++) {
+            document.getElementsByClassName('box2')[i].style.display = property;
+        }
+    }
+
+
+    function checkValue() {
+        let selectorsName = document.getElementById("input").value;
+        let elements = document.querySelectorAll(selectorsName);
+
+        if(window.getComputedStyle(elements[0]).visibility === "visible") {
+            hiddenSelectors(elements, "hidden");
+        }else {
+            hiddenSelectors(elements, "visible");
+        }
+    }
+    /*Assignment 4 */
+    function hiddenSelectors(elements, value) {
+        for(let i = 0; i < elements.length; i++) {
+            elements[i].style.visibility = value;
+        }
+    }
+
+    /*Assignment 13 */
+    document.getElementById("first").addEventListener("input", saveText);
+    document.getElementById("second").addEventListener("input", saveTextCookie);
+    document.getElementById("third").addEventListener("input", saveTextSession);
+
+    /*Assignment 13  a*/
+    function saveText() {
+        localStorage.setItem("firstKey", document.getElementById("first").innerHTML);
+    }
+
+    /*Assignment 13  b*/
+    function saveTextCookie() {
+        document.cookie = "secondKey=" + document.getElementById("second").innerHTML;
+    }
+
+    /*Assignment 13  c*/
+    function saveTextSession() {
+        sessionStorage.setItem("firstKey", document.getElementById("third").innerHTML);
+    }
+
+    window.onload = function () {
+        /*Assignment 13  a*/
+        if (localStorage.getItem("firstKey") !== null) {
+            document.getElementById("first").innerHTML = localStorage.getItem("firstKey");
+        }
+        /*Assignment 13  b*/
+        if (document.cookie !== null) {
+            readCookie();
+        }
+        /*Assignment 13  c*/
+        if (sessionStorage.getItem("firstKey") !== null) {
+            document.getElementById("third").innerHTML = sessionStorage.getItem("firstKey");
+        }
+    }
+
+    /*Assignment 13  b*/
+    function readCookie() {
+        let cookieArray = document.cookie.split(';');
+        for (let i = 0; i < cookieArray.length; i++) {
+            let currentValue = cookieArray[i].split("=");
+            if (i > 0) {
+                currentValue[0] = currentValue[0].slice(1, currentValue[0].length);
+            }
+
+            if (currentValue[0] === 'secondKey') {
+                document.getElementById("second").innerHTML = currentValue[1];
+            }
+        }
+    }
+
+    /*Assignment 10*/
+    document.querySelector("html").onmousemove = function (event) {
+
+        document.querySelector(".x").innerHTML = event.offsetX;
+        document.querySelector(".y").innerHTML = event.offsetY;
+    };
+
+    /*Assignment 11*/
+    var language = navigator.language ;
+    document.querySelector(".language").innerHTML = language;
+
+    /*Assignment 12*/
+    navigator.geolocation.getCurrentPosition(success);
+
+    function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        document.querySelector(".latitude").innerHTML = latitude;
+        document.querySelector(".longitude").innerHTML = longitude;
+    }
+
+    /*Assignment 6 */
+    function sayHello() {
+        alert("Hello");
+        let currentElement = document.getElementById('boxYellow');
+        currentElement.onclick = function () {
+            currentElement.style.visibility = "hidden";
+        };
+    }
+
+
+    function visibilityBoxOver() {
+        document.getElementById("boxRed").style.visibility = "visible";
+    }
+
+    function visibilityBoxOut() {
+        document.getElementById("boxRed").style.visibility = "hidden";
+    }
+
+    document.getElementById("inputGreen").addEventListener("focus", addGreenBox);
+    document.getElementById("inputGreen").addEventListener("input", removeGreenBox);
+
+    function addGreenBox() {
+        document.getElementById('boxGreen').style.visibility = 'visible';
+    }
+
+    function removeGreenBox() {
+        document.getElementById('boxGreen').style.visibility = 'hidden';
+    }
+
+    /*Assignment 8*/
+    document.getElementById("loadImg").addEventListener("click", loadImages);
+
+    function loadImages() {
+        let imgLink = document.getElementById("linkImg").value;
+        let img = document.createElement('img');
+        img.src = imgLink;
+        document.getElementById("demo").append(img);
+    }
+
+    /*Assignment 9*/
+    document.getElementById("loadAreaImg").addEventListener("click", loadAreaImages);
+
+    function loadAreaImages() {
+        let imgLink = document.getElementById("areaImages").value;
+        let arrayLinks = imgLink.split('\n');
+        for (let i = 0; i < arrayLinks.length; i++) {
+            let img = document.createElement('img');
+            img.src = arrayLinks[i];
+            document.getElementById("areaDemo").append(img);
+        }
+    }
+
+    let goTopBtn = document.querySelector('.buttonTop');
+    goTopBtn.addEventListener('click', backToTop);
+
+    function backToTop() {
+        if (window.pageYOffset > 0) {
+            window.scrollBy(0, -80);
+            setTimeout(backToTop, 0);
+        }
+    }
+
+    //  15
+    function informationOutput(boxName) {
+        if (bool) {
+            alert(boxName);
+        }
+    }
+
+    let bigBox = document.getElementById('bigBox');
+    let smallBox = document.getElementById('smallBox');
+    let bool = true;
+    bigBox.addEventListener('click', function () {
+        informationOutput('bigBox');
+        bool = true;
+    });
+    smallBox.addEventListener('click', function () {
+        informationOutput('smallBox');
+        bool = false;
+    });
+
+
+    // 16
+
+    var buttonNoScroll = document.querySelector('.stopScroll');
+
+    buttonNoScroll.addEventListener('click', function () {
+        document.querySelector('.stopScrollBox').classList.add('addGrayBox')
+        document.querySelector('body').classList.add('stopScroll')
+        document.querySelector('.addGrayBox').addEventListener('click', function () {
+            document.querySelector('.stopScrollBox').classList.remove('addGrayBox');
+            document.querySelector('body').classList.remove('stopScroll');
+        });
+    });
+
+    //17
+
+    document.querySelector('#formReload').addEventListener('click', function(event) {
+        event.preventDefault();
+    });
+
+    //18
+    document.querySelector('#inputFile').addEventListener("dragenter", function() {
+        document.querySelector('#divInput').classList.add('changeInput');
+    });
+
+
+
+</script>
+
+</body>
+</html>
